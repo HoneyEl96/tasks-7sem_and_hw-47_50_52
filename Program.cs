@@ -155,48 +155,48 @@
 
 // реализуем поиск, если кол-во итераций меньше или равно кол-ву введенных элементов, выводим; иначе выводим ошибку
 
-void FillMatrixRandom(int[,] matrix, int rows, int columns) // rows - строки / columns - столбцы
-{
-for(int i = 0; i < rows; i++)
-{
-for(int j = 0; j < columns; j++)
-{
-matrix[i,j] = new Random().Next(0,10);
-Console.Write(matrix[i,j] + "\t"); // \t - табуляция, для красивого вывода
-}
-Console.WriteLine();
-}
-}
+// void FillMatrixRandom(int[,] matrix, int rows, int columns) // rows - строки / columns - столбцы
+// {
+// for(int i = 0; i < rows; i++)
+// {
+// for(int j = 0; j < columns; j++)
+// {
+// matrix[i,j] = new Random().Next(0,10);
+// Console.Write(matrix[i,j] + "\t"); // \t - табуляция, для красивого вывода
+// }
+// Console.WriteLine();
+// }
+// }
 
-void FindIndex(int[,] matrix, int rows, int columns) // rows - строки / columns - столбцы
-{
-Console.WriteLine("Введите строку, которую надо найти: ");
-int stroki = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите столбец, который надо найти: ");
-int stolbci = Convert.ToInt32(Console.ReadLine());
-if (stroki < rows+1 && stolbci < columns+1)
-        {
-        for(int i = 0; i < rows; i++)
-        {
-        for(int j = 0; j < columns; j++)
-        {
-        }
-        }
-        Console.WriteLine("Вы искали число: " + matrix[stroki-1,stolbci-1]);
-        }
-else 
-    {
-    Console.WriteLine("вне диапазона"); 
-    }
-}
-Console.WriteLine("Введите число строк:");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите число столбцов:");
-int columns = Convert.ToInt32(Console.ReadLine());
-int [,] matrix = new int[rows,columns];
-FillMatrixRandom(matrix, rows, columns);
+// void FindIndex(int[,] matrix, int rows, int columns) // поиск по индексу в матрице
+// {
+// Console.WriteLine("Введите строку, которую надо найти: ");
+// int stroki = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите столбец, который надо найти: ");
+// int stolbci = Convert.ToInt32(Console.ReadLine());
+// if (stroki < rows+1 && stolbci < columns+1)
+//         {
+//         for(int i = 0; i < rows; i++)
+//         {
+//         for(int j = 0; j < columns; j++)
+//         {
+//         }
+//         }
+//         Console.WriteLine("Вы искали число: " + matrix[stroki-1,stolbci-1]);
+//         }
+// else 
+//     {
+//     Console.WriteLine("вне диапазона"); 
+//     }
+// }
+// Console.WriteLine("Введите число строк:");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите число столбцов:");
+// int columns = Convert.ToInt32(Console.ReadLine());
+// int [,] matrix = new int[rows,columns];
+// FillMatrixRandom(matrix, rows, columns);
 
-FindIndex(matrix, rows, columns);
+// FindIndex(matrix, rows, columns);
 
 // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 // Например, задан массив:
@@ -204,3 +204,44 @@ FindIndex(matrix, rows, columns);
 // 5 9 2 3
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+// вывод данных, должен быть, как минимум в формате double
+
+void FillMatrixRandom(int[,] matrix, int rows, int columns) 
+{
+for(int i = 0; i < rows; i++)
+{
+for(int j = 0; j < columns; j++)
+{
+matrix[i,j] = new Random().Next(0,10);
+Console.Write(matrix[i,j] + "\t"); 
+}
+Console.WriteLine();
+}
+}
+
+void ArifmColumns(int[,] matrix, int rows, int columns) 
+{
+double sum = 0; // отвечает за сумму
+double arifm = 0; // отвечает за сумму / на кол-во столбцов(строк)
+for(int j = 0; j < columns; j++) //тут пробегаем не по строке, а по столбцу
+{
+for(int i = 0; i < rows; i++)
+{
+sum += matrix[i,j];
+arifm = sum / rows;
+}
+Console.Write($"Среднее арифметическое в столбце {j+1}= ");
+Console.Write(" " + Math.Round(arifm,1));
+Console.WriteLine();
+}
+}
+// он мне выводит сумму средних арифметических, т.е. 1, затем 1+2, затем 1+2+3
+// как мне избавиться от этого эффекта? так то вроде работает
+
+Console.WriteLine("Введите число строк:");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов:");
+int columns = Convert.ToInt32(Console.ReadLine());
+int [,] matrix = new int[rows,columns];
+FillMatrixRandom(matrix, rows, columns);
+ArifmColumns(matrix, rows, columns);
