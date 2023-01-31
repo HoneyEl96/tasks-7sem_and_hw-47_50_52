@@ -131,7 +131,7 @@
 // {
 // for(int j = 0; j < columns; j++)
 // {
-// matrix[i,j] = Math.Round (Convert.ToDouble (new Random().NextDouble()) + (new Random().Next(0,10)),1);
+// matrix[i,j] = Math.Round (Convert.ToDouble (new Random().NextDouble()) + (new Random().Next(-9,10)),1);
 // Console.Write(matrix[i,j] + "\t"); // \t - табуляция, для красивого вывода
 // }
 // Console.WriteLine();
@@ -152,6 +152,51 @@
 
 // 1, 7(ввод индексов) -> такого числа в массиве нет
 // 1, 1 -> 9
+
+// реализуем поиск, если кол-во итераций меньше или равно кол-ву введенных элементов, выводим; иначе выводим ошибку
+
+void FillMatrixRandom(int[,] matrix, int rows, int columns) // rows - строки / columns - столбцы
+{
+for(int i = 0; i < rows; i++)
+{
+for(int j = 0; j < columns; j++)
+{
+matrix[i,j] = new Random().Next(0,10);
+Console.Write(matrix[i,j] + "\t"); // \t - табуляция, для красивого вывода
+}
+Console.WriteLine();
+}
+}
+
+void FindIndex(int[,] matrix, int rows, int columns) // rows - строки / columns - столбцы
+{
+Console.WriteLine("Введите строку, которую надо найти: ");
+int stroki = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите столбец, который надо найти: ");
+int stolbci = Convert.ToInt32(Console.ReadLine());
+if (stroki < rows+1 && stolbci < columns+1)
+        {
+        for(int i = 0; i < rows; i++)
+        {
+        for(int j = 0; j < columns; j++)
+        {
+        }
+        }
+        Console.WriteLine("Вы искали число: " + matrix[stroki-1,stolbci-1]);
+        }
+else 
+    {
+    Console.WriteLine("вне диапазона"); 
+    }
+}
+Console.WriteLine("Введите число строк:");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов:");
+int columns = Convert.ToInt32(Console.ReadLine());
+int [,] matrix = new int[rows,columns];
+FillMatrixRandom(matrix, rows, columns);
+
+FindIndex(matrix, rows, columns);
 
 // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 // Например, задан массив:
