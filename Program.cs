@@ -221,10 +221,10 @@ Console.WriteLine();
 
 void ArifmColumns(int[,] matrix, int rows, int columns) 
 {
-double sum = 0; // отвечает за сумму
-double arifm = 0; // отвечает за сумму / на кол-во столбцов(строк)
 for(int j = 0; j < columns; j++) //тут пробегаем не по строке, а по столбцу
 {
+double sum = 0; // отвечает за сумму
+double arifm = 0; // отвечает за сумму / на кол-во столбцов(строк)
 for(int i = 0; i < rows; i++)
 {
 sum += matrix[i,j];
@@ -235,8 +235,8 @@ Console.Write(" " + Math.Round(arifm,1));
 Console.WriteLine();
 }
 }
-// он мне выводит сумму средних арифметических, т.е. 1, затем 1+2, затем 1+2+3
-// как мне избавиться от этого эффекта? так то вроде работает
+// исправил, можено в коммитах посмотреть
+// засунул в первый цикл фор, чтобы отсчет каждый раз с нуля начинался
 
 Console.WriteLine("Введите число строк:");
 int rows = Convert.ToInt32(Console.ReadLine());
